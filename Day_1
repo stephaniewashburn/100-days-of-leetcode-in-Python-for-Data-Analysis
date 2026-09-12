@@ -1,0 +1,97 @@
+#Day 1
+# Your task
+Find employees who:
+#work in Research
+#have a performance score ≥ 90
+
+import pandas as pd
+
+employees = pd.DataFrame({
+    "employee_id": [101, 102, 103, 104, 105, 106, 107, 108],
+    "department": [
+        "Research", "Engineering", "Research", "Marketing",
+        "Engineering", "Research", "Marketing", "Research"
+    ],
+    "hours_worked": [42, 38, 47, 41, 50, 44, 36, 49],
+    "performance_score": [88, 94, 91, 85, 96, 89, 92, 95]
+})
+
+print(employees)
+
+employee_finder = employees[
+employees["department"] == "Research"] &
+employees["performance_score"] >= 90] &
+df[["department", "performance_score"]]
+]
+
+print(employee_finder)
+
+
+#Variation 2
+#Your task
+#Find participants who are:
+#Older
+#Have an accuracy ≥ 0.85
+
+import pandas as pd
+
+participants = pd.DataFrame({
+    "participant_id": [201, 202, 203, 204, 205, 206, 207, 208],
+    "age_group": [
+        "Young", "Older", "Young", "Older",
+        "Young", "Older", "Young", "Older"
+    ],
+    "accuracy": [0.91, 0.82, 0.87, 0.94, 0.76, 0.89, 0.95, 0.85],
+    "reaction_time": [510, 650, 580, 540, 700, 560, 490, 620]
+})
+
+print(participants)
+
+CALC = participants[
+    (participants["age_group"] == "Older") &
+    (participants["accuracy"] >= 0.85)
+]
+
+CALC = CALC[
+    ["participant_id", "accuracy", "reaction_time"]
+]
+    
+print(CALC)
+
+#Your task
+
+#Find trials that are:
+
+#Treatment
+#reaction time < 550
+
+import pandas as pd
+
+trials = pd.DataFrame({
+    "trial_id": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    "condition": [
+        "Control", "Treatment", "Treatment", "Control", "Treatment",
+        "Control", "Treatment", "Control", "Treatment", "Treatment"
+    ],
+    "accuracy": [0.82, 0.91, 0.76, 0.88, 0.95,
+                 0.79, 0.89, 0.93, 0.84, 0.97],
+    "reaction_time": [610, 520, 680, 570, 490,
+                      650, 540, 510, 590, 470]
+})
+
+print(trials)
+
+
+CALC = trials[
+    (trials["condition"] == "Treatment") &
+    (trials["reaction_time"] < 550)
+     ]
+
+CALC = CALC[
+    ["trial_id", "accuracy", "reaction_time"]
+]
+
+print(CALC)
+
+
+
