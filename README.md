@@ -37,6 +37,7 @@ Topics covered throughout the challenge include:
 | Day | Topic | Status |
 |---|---|---|
 | 1 | Filtering and Selecting | ✅ |
+| 2 | Multiple-Condition Filtering with Boolean Indexing | ✅ |
 
 
 
