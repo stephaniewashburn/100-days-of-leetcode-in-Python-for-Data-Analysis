@@ -1,0 +1,71 @@
+# Day 2
+
+#Your task:
+#Create a dataframe called selected_trials containing participants who meet all three conditions:
+
+#age_group is "Older"
+#condition is "Treatment"
+#accuracy is at least 0.80
+
+#Then keep only these columns:
+
+#participant_id
+#accuracy
+#reaction_time
+
+import pandas as pd
+
+trials = pd.DataFrame({
+    "participant_id": [101, 102, 103, 104, 105, 106, 107, 108],
+    "age_group": ["Younger", "Older", "Older", "Younger",
+                  "Older", "Younger", "Older", "Younger"],
+    "condition": ["Treatment", "Treatment", "Control", "Treatment",
+                  "Treatment", "Control", "Treatment", "Treatment"],
+    "accuracy": [0.91, 0.84, 0.93, 0.88, 0.79, 0.95, 0.90, 0.86],
+    "reaction_time": [480, 520, 610, 490, 570, 450, 530, 510]
+})
+
+
+selected_trials = trials[
+    (trials["age_group"] == "Older") &
+    (trials["condition"] == "Treatment") &
+    (trials["accuracy"] >= 0.80)
+]
+                               
+selected_trials = selected_trials[
+    ["participant_id", "accuracy", "reaction_time"]
+]
+
+print(selected_trials)
+
+
+#Variation 2: 
+
+#Create a dataframe called fast_older that keeps participants who meet all three conditions:
+
+#age_group is "Older"
+#condition is "Treatment"
+#reaction_time is below 550
+
+import pandas as pd
+
+participants = pd.DataFrame({
+    "participant_id": [201, 202, 203, 204, 205, 206, 207, 208],
+    "age_group": ["Older", "Younger", "Older", "Older",
+                  "Younger", "Older", "Younger", "Older"],
+    "condition": ["Control", "Treatment", "Treatment", "Treatment",
+                  "Control", "Treatment", "Treatment", "Control"],
+    "accuracy": [0.89, 0.92, 0.76, 0.94, 0.81, 0.87, 0.95, 0.90],
+    "reaction_time": [560, 480, 610, 495, 530, 520, 470, 585]
+})
+
+fast_older = participants[
+    (participants["age_group"] == "Older") & 
+    (participants["condition"] == "Treatment") &
+    (participants["reaction_time"] < 550)
+]
+fast_older = fast_older[
+    ["participant_id", "accuracy", "reaction_time"]
+]
+
+print(fast_older)
