@@ -1,0 +1,45 @@
+#Day 3:
+# Your task
+
+#Create a DataFrame called research_performance that:
+
+#Keeps only Research employees.
+#Keeps only Full-Time employees.
+#Creates a new column called tasks_per_hour:
+#tasks_completed / hours_worked
+#Sorts employees from highest to lowest tasks_per_hour.
+#Keeps only:
+#employee_id, tasks_completed, hours_worked, tasks_per_hour
+#Print the result.
+import pandas as pd
+
+employees = pd.DataFrame({
+    "employee_id": [301, 302, 303, 304, 305, 306, 307, 308],
+    "department": ["Research", "Engineering", "Research", "Research",
+                   "Engineering", "Research", "Research", "Engineering"],
+    "status": ["Full-Time", "Full-Time", "Part-Time", "Full-Time",
+               "Full-Time", "Full-Time", "Part-Time", "Full-Time"],
+    "tasks_completed": [42, 55, 28, 61, 48, 52, 31, 58],
+    "hours_worked": [35, 40, 20, 38, 36, 32, 22, 40]
+})
+
+research_performance = employees[
+    (employees["department"] == "Research") &
+    (employees["status"] == "Full-Time") 
+]
+
+
+research_performance["tasks_per_hour"] = (
+    research_performance["tasks_completed"] /
+    research_performance["hours_worked"]
+ ) 
+
+research_performance = research_performance.sort_values(
+    "tasks_per_hour", 
+    ascending = False
+)
+
+research_performance = research_performance[
+    ["employee_id", "tasks_completed", "hours_worked", "tasks_per_hour"]
+    ]
+print(research_performance)
