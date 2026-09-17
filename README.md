@@ -38,6 +38,8 @@ Topics covered throughout the challenge include:
 |---|---|---|
 | 1 | Filtering and Selecting | ✅ |
 | 2 | Multiple-Condition Filtering with Boolean Indexing | ✅ |
+| 3 | Creating Calculated Columns + Sorting| ✅ |
+| 4 | Grouping + Aggregation with groupby() | ✅ |
 
 
 
