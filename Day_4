@@ -32,3 +32,33 @@ participant_summary = participant_summary.sort_values(
 
 print(participant_summary)
     
+#Day 4 Variation 2
+# Your task is to create employee_summary that:
+
+#Groups by employee_id.
+#Calculates the total tasks_completed for each employee.
+#Renames tasks_completed → total_tasks.
+#Sorts from highest to lowest total_tasks.
+#Prints employee_summary.
+
+import pandas as pd
+
+sessions = pd.DataFrame({
+    "employee_id": [201, 201, 202, 202, 203, 203, 204, 204],
+    "department": ["Research", "Research", "Clinical", "Clinical",
+                   "Research", "Research", "Clinical", "Clinical"],
+    "tasks_completed": [12, 15, 18, 14, 10, 17, 20, 16]
+})
+
+employee_summary = sessions.groupby("employee_id")["tasks_completed"].sum().reset_index()
+
+employee_summary = employee_summary.rename(
+    columns = {"tasks_completed":"total_tasks"}
+)
+
+emlpoyee_summary = employee_summary.sort_values(
+    "total_tasks",
+    ascending = False
+)
+
+print(employee_summary)
