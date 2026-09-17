@@ -1,0 +1,34 @@
+#Day 4
+# create a dataset called participant_summarythat:
+
+#Groups observations by participant_id.
+#Calculates each participant's total correct_trials.
+#Names the resulting column total_correct.
+#Sorts participants from highest to lowest total_correct.
+#Prints the result.
+
+import pandas as pd
+
+trials = pd.DataFrame({
+    "participant_id": [101, 101, 102, 102, 103, 103, 104, 104],
+    "condition": ["Control", "Control", "Treatment", "Treatment",
+                  "Control", "Control", "Treatment", "Treatment"],
+    "correct_trials": [18, 21, 20, 23, 16, 19, 22, 24]
+})
+
+#groupby participant id, then sum correct trials column and reset index to reset data frame
+participant_summary = trials.groupby("participant_id")["correct_trials"].sum().reset_index()
+
+#rename column
+participant_summary = participant_summary.rename(
+    columns = {"correct_trials":"total_correct"}
+)
+
+#ascending
+participant_summary = participant_summary.sort_values(
+    "total_correct",
+    ascending = False
+)
+
+print(participant_summary)
+    
