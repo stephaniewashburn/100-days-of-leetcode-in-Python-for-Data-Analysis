@@ -1,0 +1,31 @@
+#Day 5
+#Your challenge
+
+#Create a dataframe called participant_summary that, for each participant:
+
+#Calculates their mean accuracy.
+#Calculates their mean reaction time.
+#Names the columns avg_accuracy and avg_reaction_time.
+#Sorts participants from highest to lowest average accuracy.
+#Prints the result.
+
+import pandas as pd
+
+trials = pd.DataFrame({
+    "participant_id": [101, 101, 102, 102, 103, 103, 104, 104],
+    "accuracy": [0.82, 0.91, 0.76, 0.88, 0.94, 0.96, 0.79, 0.85],
+    "reaction_time": [520, 480, 610, 550, 450, 430, 590, 540]
+})
+
+participants_summary = trials.groupby("participant_id").agg(
+    avg_accuracy = ("accuracy", "mean"),
+    avg_reaction_time  = ("reaction_time", "mean")
+).reset_index()
+
+
+participants_summary = participants_summary.sort_values(
+    "avg_accuracy",
+     ascending = False
+)
+
+print(participants_summary)
