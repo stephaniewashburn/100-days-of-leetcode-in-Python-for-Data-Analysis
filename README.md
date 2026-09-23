@@ -1,4 +1,4 @@
-# 100-days-of-leetcode-in-R
+# 100-days-of-leetcode-in-Python
 Hi there!
 I will be reviewing topics in Python through a 100 day leetcode challenge!
 
