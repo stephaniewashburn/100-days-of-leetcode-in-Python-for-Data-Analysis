@@ -1,0 +1,61 @@
+#Day 6
+
+#You have behavioral data where some participants are missing accuracy or reaction-time measurements.
+
+#Create a dataframe called complete_participants that:
+
+#Identifies/removes participants who are missing either accuracy OR reaction_time.
+#Keeps participants even if confidence is missing.
+#Creates a new column called accuracy_percent equal to accuracy * 100.
+#Sorts the dataframe from fastest to slowest reaction_time.
+#Keeps only:
+#participant_id
+#accuracy_percent
+#reaction_time
+#confidence
+#Resets the index so it starts at 0.
+#Prints the result.
+
+
+import pandas as pd
+import numpy as np
+
+participants = pd.DataFrame({
+    "participant_id": [101, 102, 103, 104, 105, 106, 107, 108],
+    
+    "accuracy": [
+        0.91, np.nan, 0.87, 0.95,
+        0.79, 0.89, np.nan, 0.93
+    ],
+    
+    "reaction_time": [
+        480, 560, np.nan, 450,
+        610, 500, 545, 470
+    ],
+    
+    "confidence": [
+        8, 6, 7, np.nan,
+        5, 8, 7, 9
+    ]
+})
+
+complete_participants = participants.dropna(
+    subset = ["accuracy","reaction_time"]
+)
+
+complete_participants["accuracy_percent"] = (complete_participants["accuracy"] * 100)
+
+
+complete_participants = complete_participants[
+    ["participant_id", "accuracy_percent", "reaction_time", "confidence"]
+]
+
+complete_participants = complete_participants.sort_values(
+    "reaction_time",
+    ascending = True
+)
+
+complete_participants = complete_participants.reset_index(drop = True)
+
+print(complete_participants)
+    
