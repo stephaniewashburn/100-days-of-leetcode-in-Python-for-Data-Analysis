@@ -1,0 +1,51 @@
+#Day 7 
+#Create a dataframe called high_performers that:
+#1. Keeps only participants in the Treatment condition.
+#2. Keeps only participants with accuracy ≥ 0.85.
+#3. Keeps only participants with reaction time < 550 ms.
+#4. Use .query() to perform the filtering.
+#5. Create accuracy_percent equal to accuracy * 100.
+#6. Keep only:
+#   - participant_id
+#   - age_group
+#   - accuracy_percent
+#   - reaction_time
+#7. Sort from highest to lowest accuracy_percent.
+#8. Reset the index.
+#9. Print the result.
+
+import pandas as pd
+import numpy as np
+
+trials = pd.DataFrame({
+    "participant_id": [101, 102, 103, 104, 105, 106, 107, 108, 109, 110],
+    "age_group": [
+        "Younger", "Older", "Older", "Younger", "Older",
+        "Younger", "Older", "Younger", "Older", "Younger"
+    ],
+    "condition": [
+        "Treatment", "Treatment", "Control", "Treatment", "Treatment",
+        "Control", "Treatment", "Treatment", "Control", "Treatment"
+    ],
+    "accuracy": [0.94, 0.88, 0.91, 0.86, 0.79, 0.93, 0.90, 0.82, 0.89, 0.96],
+    "reaction_time": [470, 520, 490, 545, 610, 480, 505, 560, 515, 455]
+})
+
+high_performers = trials.query(
+    'condition == "Treatment" & accuracy >= 0.85 & reaction_time < 550'
+)
+
+high_performers["accuracy_percent"] = (high_performers["accuracy"] * 100)
+
+high_performers = high_performers.sort_values(
+    "accuracy_percent",
+    ascending = False
+)
+
+high_performers = high_performers.reset_index(drop = True)
+
+high_performers = high_performers[
+    ["participant_id", "age_group", "accuracy_percent", "reaction_time"]
+]
+
+print(high_performers)
