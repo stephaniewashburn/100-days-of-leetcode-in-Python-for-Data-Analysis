@@ -42,4 +42,6 @@ Topics covered throughout the challenge include:
 | 4 | Grouping + Aggregation with groupby() | ✅ |
 | 5 | Using agg() and reset_index() | ✅ |
 | 6 | Using .dropna() and reset_index() | ✅ |
+| 7 | Using .query() | ✅ |
+
 
