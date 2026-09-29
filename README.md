@@ -41,5 +41,5 @@ Topics covered throughout the challenge include:
 | 3 | Creating Calculated Columns + Sorting| ✅ |
 | 4 | Grouping + Aggregation with groupby() | ✅ |
 | 5 | Using agg() and reset_index() | ✅ |
-
+| 6 | Using .dropna() and reset_index() | ✅ |
 
