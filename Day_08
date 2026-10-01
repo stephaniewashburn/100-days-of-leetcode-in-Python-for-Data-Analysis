@@ -1,0 +1,63 @@
+# Day 8
+# Create a dataframe called clean_trials that:
+#
+# 1. Identify which values are missing in the dataframe using .isna().
+#    Print the number of missing values in each column.
+#
+# 2. Remove participants who are missing accuracy.
+#
+# 3. For missing reaction_time values, replace them with the
+#    mean reaction_time of the remaining participants.
+#
+# 4. Create a new column called accuracy_percent
+#    equal to accuracy * 100.
+#
+# 5. Keep only:
+#    - participant_id
+#    - age_group
+#    - accuracy_percent
+#    - reaction_time
+#
+# 6. Reset the index.
+#
+# 7. Print clean_trials.
+
+
+import pandas as pd
+import numpy as np
+
+trials = pd.DataFrame({
+    "participant_id": [101, 102, 103, 104, 105, 106, 107, 108, 109, 110],
+    "age_group": [
+        "Younger", "Older", "Older", "Younger", "Older",
+        "Younger", "Older", "Younger", "Older", "Younger"
+    ],
+    "accuracy": [
+        0.94, np.nan, 0.91, 0.86, 0.79,
+        0.93, 0.90, np.nan, 0.89, 0.96
+    ],
+    "reaction_time": [
+        470, 520, np.nan, 545, 610,
+        480, 505, 560, np.nan, 455
+    ]
+})
+
+missing_values = trials.isna().sum()
+print(missing_values)
+
+clean_trials = trials.dropna(
+    subset = ["accuracy"])
+
+clean_trials["reaction_time"] = clean_trials["reaction_time"].fillna(
+   clean_trials["reaction_time"].mean()
+)
+
+clean_trials["accuracy_percent"] = clean_trials["accuracy"] * 100
+
+clean_trials = clean_trials[
+    ["participant_id", "age_group", "accuracy_percent", "reaction_time"]
+]
+
+clean_trials = clean_trials.reset_index(drop = True)
+
+print(clean_trials)
