@@ -1,0 +1,55 @@
+#Day 9:
+
+# You have TWO dataframes:
+#   participants = demographic information
+#   performance = task performance
+#
+# Create a dataframe called merged_data that:
+#
+# 1. Merges participants and performance using participant_id.
+# 2. Keep ONLY participants who appear in BOTH datasets.
+# 3. Create a new column called accuracy_percent equal to accuracy * 100.
+
+# 4. Sort from fastest to slowest reaction_time.
+# 5. Reset the index.
+# 6. Print merged_data.
+
+
+import pandas as pd
+
+participants = pd.DataFrame({
+    "participant_id": [101, 102, 103, 104, 105, 106, 107],
+    "age_group": [
+        "Younger", "Older", "Older", "Younger",
+        "Older", "Younger", "Older"
+    ],
+    "condition": [
+        "Treatment", "Treatment", "Control", "Treatment",
+        "Control", "Treatment", "Control"
+    ]
+})
+
+performance = pd.DataFrame({
+    "participant_id": [101, 102, 103, 104, 106, 108],
+    "accuracy": [0.94, 0.88, 0.91, 0.86, 0.93, 0.82],
+    "reaction_time": [470, 520, 490, 545, 480, 560]
+})
+
+merged_data = pd.merge(
+    participants,
+    performance,
+    on = "participant_id",
+    how = "inner"
+)
+
+merged_data["accuracy_percent"] = merged_data["accuracy"] * 100
+
+merged_data = merged_data.sort_values(
+    "reaction_time", 
+    ascending = True
+)
+
+merged_data = merged_data.reset_index(drop = True)
+
+
+print(merged_data)
