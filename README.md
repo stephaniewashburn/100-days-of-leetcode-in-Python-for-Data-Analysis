@@ -44,6 +44,8 @@ Topics covered throughout the challenge include:
 | 6 | Using .dropna() and reset_index() | ✅ |
 | 7 | Using .query() | ✅ |
 | 8 | Missing data using isna(), dropna, and fillna | ✅ |
+| 9 | Merging datasets | ✅ |
+
 
 
 
